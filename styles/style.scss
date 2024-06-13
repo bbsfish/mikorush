@@ -1,0 +1,474 @@
+@import url(http://fonts.googleapis.com/css?family=Dancing+Script:700);
+@import url(https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+
+/*
+ * 変数定義
+ */
+:root {
+    --black: black;
+    --black-2: black;
+    --white: white;
+    --white-2: white;
+    --lightgray: rgb(94, 94, 94);
+    --lightblack: rgb(40, 40, 40);
+    --darkblack: #222;
+    --h-base-color: rgb(119, 119, 119);
+    --h-nav-list-active: rgb(254, 1, 92);
+    --h-nav-bg: rgb(40, 40, 40);
+    --m-header-main: rgb(162, 162, 162);
+    --m-tmlist-pg-active: rgb(96, 96, 96);
+    --m-bgcolor-1: #222;
+    --base-white: aliceblue;
+}
+
+/*
+ * 共通パーツ
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+html {
+    font-size: 16px;
+    background-color: gray;
+}
+
+body {
+    width: 100%;
+    font-family: 'Ubuntu Condensed', sans-serif, cursive;
+}
+
+header, main, footer {
+    // PC は左右に広めの余白
+    padding: 0 2rem;
+    width: calc(100% - 4rem); // 左右の padding 分を引く
+
+    // モバイルは左右に狭めの余白
+    @media screen and (max-width: 768px) {
+        padding: 0 .5rem;
+        width: calc(100% - 1rem); // 左右の padding 分を引く
+    }
+}
+
+header, footer {
+    background-color: black;
+}
+
+main {
+    min-height: 90vh;
+}
+
+li {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+
+h1, h2, h3, h4, h5,
+p, time, li {
+    color: var(--white);
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    /* button reset */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+}
+
+.wrap {
+    overflow: hidden;
+}
+
+img {
+    width: 150px;
+}
+
+// スクロールバーのスタイル
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--lightgray);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--white);
+}
+
+/*
+ * ヘッダー
+ */
+header {
+    // アイコンのサイズを指定する
+    --header-width: 100px;
+    --header-height: 50px;
+}
+
+header {
+    text-align: center;
+    color: var(--white);
+    transition: .4s ease;
+
+    .menu {
+        display: flex;
+        width: var(--header-width);
+        height: var(--header-height);
+        transition: .9s ease;
+    }
+
+    // ロゴアイコン
+    .logo {
+        a {
+            display: block;
+            color: var(--h-nav-list-active);
+            position: relative;
+            img {
+                display: block;
+                width: var(--header-width);
+                height: var(--header-height);
+            }
+        }
+    }
+
+    // バーガーメニューボタンはモバイルでは非表示に
+    .barger-menu {
+        display: none;
+    }
+
+    // モバイル用 - 画面幅が768px以下の場合に適用されるスタイル
+    @media screen and (max-width: 768px) {
+        .menu {
+            position: fixed;
+            transition: .4s ease;
+            z-index: 10000;
+        }
+    
+        .h-nav-list-active {
+            color: var(--h-nav-list-active) !important;
+            font-size: 18px !important;
+        }
+    
+        .m-header-hidden {
+            height: 50px !important;
+        }
+    
+        // ロゴ
+        .logo {
+            width: var(--header-width);
+            height: var(--header-height);
+            background-color: var(--black);
+            position: absolute;
+            z-index: 5000;
+            a {
+                font-family: 'Questrial', 'Helvetica Neue', Arial, sans-serif;
+                display: block;
+                width: 105px;
+                height: 50px;
+                color: var(--h-nav-list-active);
+                position: relative;
+            }
+        }
+    
+        // PC 用のメニュー非表示
+        .h-nav-list {
+            display: none;
+        }
+    
+        // バーガーメニュー
+        .barger-menu {
+            position: relative;
+            display: block;
+            background-color: var(--black);
+            width:100%;
+            height: var(--header-height);
+
+            #barger-menu-list {
+                position: absolute;
+                z-index: 1000;
+                top: -250px;
+                border-top: 1px solid var(--white);
+                background-color: var(--black);
+                width: 100%;
+                transition: all 0.6s;
+            }
+        
+            #barger-menu-list.panelactive {
+                top: 50px;
+            }
+        
+            #barger-menu-list ul li,
+            #barger-menu-list ul li a {
+                font-family: 'Questrial', 'Helvetica Neue', Arial, sans-serif;
+                text-transform: uppercase;
+                line-height: 40px;
+                display: block;
+                height: 40px;
+                text-align: left;
+                margin-left: 10px;
+                font-size: 14px;
+            }
+        
+            #barger-menu-list ul li:last-child {
+                margin-top: 20px;
+            }
+        
+            /* barger menu btn */
+            #barger-menu-btn {
+                position: fixed;
+                z-index: 6000;
+                top: 4px;
+                right: 10px;
+                display: flex;
+                height: 40px;
+                width: 40px;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--black);
+                transition: .5s ease;
+            }
+        
+            #barger-menu-btn span,
+            #barger-menu-btn span:before,
+            #barger-menu-btn span:after {
+                position: fixed;
+                content: "";
+                display: block;
+                height: 4px;
+                width: 25px;
+                border-radius: 3px;
+                background-color: var(--white);
+                position: absolute;
+            }
+        
+            #barger-menu-btn span:before {
+                bottom: 8px;
+            }
+        
+            #barger-menu-btn span:after {
+                top: 8px;
+            }
+        }
+    }
+}
+
+.m-header h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: calc(50vh - 100px);
+    padding-bottom: 60px;
+    font-family: 'Dela Gothic One', cursive;
+}
+
+.m-header a {
+    font-size: 24px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    color: black;
+    border-radius: 30px;
+    font-weight: 200;
+}
+
+.m-header a:hover {
+    color: white;
+    border: 1px solid white;
+    transition-timing-function: ease-in;
+    transition-duration: 0.2s;
+}
+
+/* section */
+.m-sections h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    padding: 15px 0px;
+    color: var(--h-nav-list-active);
+}
+
+.description {
+    text-align: center;
+    font-size: 18px;
+    padding: 15px 0px;
+    color: rgb(177, 177, 177);
+}
+
+/* highlights img-list */
+.img-list {
+    display: inline-block;
+    height: 320px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: scroll;
+    text-align: center;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    /* Firefox 対応 */
+}
+
+.img-list::-webkit-scrollbar {
+    /* Chrome, Safari 対応 */
+    display: none;
+}
+
+.img-list:hover {
+    -ms-overflow-style: auto;
+    /* IE, Edge 対応 */
+    scrollbar-width: auto;
+    /* Firefox 対応 */
+}
+
+.img-list::-webkit-scrollbar:hover {
+    /* Chrome, Safari 対応 */
+    display: auto;
+}
+
+.img-list a {
+    display: inline-block;
+    height: 280px;
+    width: 160px;
+    text-align: center;
+    margin: 5px 5px;
+}
+
+.img-list p {
+    display: block;
+    height: 40px;
+    width: 150px;
+    padding: 0;
+    margin: 0 auto;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.img-list img {
+    width: 150px;
+    height: 190px;
+    margin: 0 auto;
+}
+
+
+/*
+ * フッター
+ */
+div.footer-nav {
+    min-height: 110px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    max-width: 800px;
+}
+
+div.footer-nav nav.f-nav-list {
+    display: block;
+    width: 150px;
+}
+
+footer h4 {
+    border-bottom: var(--base-white) solid 1px;
+    font-size: 20px;
+    color: var(--h-nav-list-active);
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+div.f-nav-list-main {
+    min-width: 260px;
+}
+
+@media screen and (min-width: 769px) {
+    div.footer-nav {
+        justify-content: flex-start;
+    }
+
+    div.footer-nav nav.f-nav-list {
+        width: 300px;
+        margin: 0 15px;
+    }
+}
+
+/* follow btn */
+.follow-me {
+    margin: 0 0 -8px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.follow-me li {
+    float: left;
+    margin: 0 8px 8px 0;
+    padding: 0;
+}
+
+.follow-me li a::before {
+    background-color: #eee;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    color: #333;
+    display: inline-block;
+    font-family: 'FontAwesome';
+    font-size: 16px;
+    height: 44px;
+    /* Button height */
+    line-height: 44px;
+    /* Button height */
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    text-align: center;
+    width: 44px;
+    /* Button width */
+}
+
+.follow-me li a:hover::before {
+    color: #fff;
+    background-color: rgb(83, 83, 83);
+}
+
+.follow-me li a[href*="twitter.com"]::before {
+    content: "\f099";
+}
+
+.follow-me li a[href*="instagram.com"]::before {
+    content: "\f16d";
+}
+
+/* hr */
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 120px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.sub-hr {
+    border: 0;
+    height: 0;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    max-width: 100px;
+    margin: auto;
+    margin-bottom: 20px;
+}

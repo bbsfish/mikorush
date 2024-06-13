@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>巫女ラッシュ</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="./scripts/main.js"></script>
+  <link rel="icon" href="./assets/favicon.png">
+</head>
+
+<body>
+  <header>
+    <div class="menu">
+      <h1 class="logo">
+        <a href="./index.html"><img src="./assets/header_logo.png" alt="header logo image" /></a>
+      </h1>
+      <nav class="h-nav-list h-nav-list-main">
+        <ul>
+          <!-- <a> class="h-nav-list-active" 付与でハイライト -->
+          <li class="h-nav-list-item"><a href="./index.html#intro" class="h-link-pc for-index">intro</a></li>
+          <li class="h-nav-list-item"><a href="./index.html#highlights" class="h-link-pc for-indexn">highlights</a></li>
+        </ul>
+      </nav>
+      <nav class="h-nav-list h-nav-list-sub">
+        <ul>
+          <li class="h-nav-list-item for-about"><a href="./about.html">about</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- barger menu -->
+    <div class="barger-menu">
+      <!-- barger btn -->
+      <label for="barger-menu-list" class="barger-menu-btn" id="barger-menu-btn"><span></span></label>
+      <!-- barger list -->
+      <div class="barger-menu-list" id="barger-menu-list">
+        <ul>
+          <!-- <a> class="h-nav-list-active" 付与でハイライト -->
+          <li class="h-nav-list-item"><a href="./index.html#intro" class="h-link-sp for-index">intro</a></li>
+          <li class="h-nav-list-item"><a href="./index.html#highlights" class="h-link-sp for-indexn">highlights</a></li>
+          <li class="h-nav-list-item"><a href="./works.html" class="h-link-sp for-works">works</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <main>
+    <!-- #intro -->
+    <section class="m-sections" id="intro">
+      <h2>INTRODUCE</h2>
+      <hr>
+      <p class="description" id="desc01">Hello World</p>
+    </section>
+    <!-- #highlights -->
+    <section class="m-sections" id="highlights">
+      <h2>HIGHLIGHTS</h2>
+      <hr>
+      <div class="img-list">
+        <a href="./works.html"><img src="./assets/p01.jpeg">
+          <p>作品公開</p><time>2022.05.21</time>
+        </a>
+        <a href="./index.html"><img src="./lib/logo.bmp">
+          <p>ホームページ公開</p><time>2022.05.21</time>
+        </a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-nav">
+      <nav class="f-nav-list f-nav-list-main">
+          <h4>About</h4>
+          <ul>
+              <li><a rel="nofollow" href="./about.html#developpers">Contuct us</a></li>
+          </ul>
+      </nav>
+      <nav class="f-nav-list f-nav-list-sub">
+          <h4>Follow</h4>
+          <ul class="follow-me">
+              <li><a href="https://twitter.com/PANMry_official" id="twttr"></a></li>
+              <li><a href="https://www.instagram.com/panmry__/" id="insta"></a></li>
+              <li><a href="https://www.youtube.com/"></a></li>
+          </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
